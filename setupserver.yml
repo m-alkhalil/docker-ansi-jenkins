@@ -1,0 +1,22 @@
+---
+
+- name: setup the target server and install the required packages
+  hosts: webserver
+  become: true
+  vars_files:
+    - proj_vars.yml
+  tasks:
+    - name: update apt package
+      apt:
+        update_cache: true
+    - name: install the required tools maven and docker
+      package:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ req_pkgs }}"
+      notify: Start-Docker
+  handlers:
+    - name: Start-Docker
+      service:
+        name: docker
+        state: started
