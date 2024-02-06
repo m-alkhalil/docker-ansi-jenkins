@@ -3,7 +3,7 @@
 - name: setup the target server and install the required packages
   hosts: webserver
   become: true
-  remote_user: mhkrem
+  #remote_user: mhkrem
   vars_files:
     - proj_vars.yml
   tasks:
