@@ -6,6 +6,7 @@
   become: true
   vars_files:
     - proj_vars.yml
+    - sudo_pass.yml
   tasks:
     - name: update apt package
       apt:
