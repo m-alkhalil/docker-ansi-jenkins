@@ -1,6 +1,6 @@
 FROM tomcat
 
-ADD {{ artf }}  /usr/local/tomcat/webapps
+ADD {{ artf }}  /usr/share/tomcat/webapps
 CMD ["catalina.sh","run"]
 EXPOSE 8080
 
