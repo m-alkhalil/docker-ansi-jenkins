@@ -1,0 +1,35 @@
+
+---
+
+- name: setup the target server and install the required packages
+  hosts: webserver
+  become: true
+  vars_files:
+    - proj_vars.yml
+  tasks:
+    - name: update apt package
+      apt:
+        update_cache: true
+    - name: install the required tools maven, next task is docker
+      package:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ req_pkgs }}"
+    - name: Copy and perepare Docker installatin script file on the target host
+      copy: 
+        src: install_docker.sh
+        dest: /tmp/install_docker.sh
+        mode: +x
+    - name: Run install docker Script on the target host
+      command: "sh /tmp/install_docker.sh"
+      register: script_output
+      notify: Start-Docker
+    - name: Script execution output
+      debug:
+        var: script_output
+  handlers:
+    - name: Start-Docker
+      service:
+        name: docker
+        state: started
+
