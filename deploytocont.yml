@@ -4,6 +4,7 @@
   become: true
   vars_files:
     - proj_vars.yml
+    - sudo_pass.yml
   tasks:
     - name: create the project folder
       file:
