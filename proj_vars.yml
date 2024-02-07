@@ -1,0 +1,9 @@
+
+
+rep_link: "https://github.com/Sonal0409/DevOpsCodeDemo.git"
+proj_dir: "dep_ansi_proj"
+trg_path: "/var/dep_ansi_proj"
+req_pkgs:
+  - maven
+artf: "addressbook.war" 
+dok_img: "mhk_proj_img"
