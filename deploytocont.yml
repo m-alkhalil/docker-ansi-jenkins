@@ -45,5 +45,5 @@
 
     - name: Run-into-Container
       command: " docker run -d -P {{ dok_img }}"
-      notify: Get-container-Info
+  
     
