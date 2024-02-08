@@ -47,9 +47,10 @@
       command: " docker run -d -P {{ dok_img }}"
       notify: Get-container-Info
     - name: Get-container-Info
-      docker_container_info:
-        name: "{{ dok_img }}"
+      command: docker inspect "{{ dok_img }}"
       register: Container_info
+      changed_when: false
+      ignore_errors: true
       notify: Print-Container-Info
     - name: Print-Container-Info
       debug:
