@@ -45,3 +45,12 @@
 
     - name: Run-into-Container
       command: " docker run -d -P {{ dok_img }}"
+      notify: Get-container-Info
+    - name: Get-container-Info
+      docker_container_info:
+        name: "{{ dok_img }}"
+      register: Container_info
+      notify: Print-Container-Info
+    - name: Print-Container-Info
+      debug:
+        var: Container_info
