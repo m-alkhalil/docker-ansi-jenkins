@@ -33,6 +33,11 @@
         src: dockerfile.j2
         dest: "{{ trg_path }}/dockerfile"
       notify: Build-the-docker-image
+    - name: Add user to docker group
+      user:
+        name: ansible_user
+        groups: docker
+        append: yes
   handlers:    
     - name: Build-the-docker-image
       command:
