@@ -33,11 +33,10 @@
         src: dockerfile.j2
         dest: "{{ trg_path }}/dockerfile"
       notify: Build-the-docker-image
-    - name: Add user to docker group
-      user:
-        name: ansible_user
-        groups: docker
-        append: yes
+    - name: Run Docker Socket
+      file:
+        path: /var/run/docker.sock
+        mode: '0777'
   handlers:    
     - name: Build-the-docker-image
       command:
